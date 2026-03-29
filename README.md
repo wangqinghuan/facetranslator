@@ -61,3 +61,4 @@ python -m http.server 8080
 1. 必须允许麦克风权限
 2. 需要网络连接进行翻译
 3. 语音识别在 Chrome/Edge 中效果最佳
+
