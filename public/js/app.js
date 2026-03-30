@@ -2,7 +2,7 @@ class MirrorTranslator {
     constructor() {
         this.chineseRecognition = null;
         this.englishRecognition = null;
-        this.maxHistory = 3;
+        this.maxHistory = 5;
         this.chineseHistory = [];
         this.englishHistory = [];
         
@@ -114,48 +114,26 @@ class MirrorTranslator {
         const history = type === 'chinese' ? this.chineseHistory : this.englishHistory;
         const container = type === 'chinese' ? this.chineseText : this.englishText;
         
+        container.innerHTML = '';
+        
         if (history.length === 0) {
             container.innerHTML = type === 'chinese' 
                 ? '<span class="placeholder">点击麦克风说话...</span>'
                 : '<span class="placeholder">Tap microphone to speak...</span>';
             return;
         }
-
-        container.querySelectorAll('.placeholder').forEach(el => el.remove());
         
-        container.querySelectorAll('.message').forEach((el, index) => {
-            el.classList.add('old');
-            el.style.animation = 'none';
-            el.offsetHeight;
-            el.style.animation = 'pushDown 0.3s ease-out';
-        });
-        
-        const newItem = history[0];
-        const newMessage = document.createElement('div');
-        newMessage.className = 'message new';
-        newMessage.textContent = newItem.text;
-        container.insertBefore(newMessage, container.firstChild);
-        
-        while (container.children.length > this.maxHistory) {
-            const lastChild = container.lastChild;
-            if (lastChild.classList.contains('message')) {
-                lastChild.classList.add('fadeOut');
-                setTimeout(() => lastChild.remove(), 300);
+        history.forEach((item, index) => {
+            const msg = document.createElement('div');
+            msg.className = 'message';
+            if (index === 0) {
+                msg.classList.add('new');
             } else {
-                lastChild.remove();
+                msg.classList.add('old');
             }
-            break;
-        }
-        
-        if (container.children.length > this.maxHistory + 1) {
-            const toRemove = container.children[this.maxHistory + 1];
-            if (toRemove && toRemove.classList.contains('message')) {
-                toRemove.classList.add('fadeOut');
-                setTimeout(() => toRemove.remove(), 300);
-            }
-        }
-        
-        history.forEach(item => item.isNew = false);
+            msg.textContent = item.text;
+            container.appendChild(msg);
+        });
     }
     
     async translate(text, targetLang) {
