@@ -25,7 +25,7 @@ class MirrorTranslator {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         
         if (!SpeechRecognition) {
-            this.showError('您的浏览器不支持语音识别，请使用 Chrome/Edge 浏览器');
+            console.log('SpeechRecognition not supported');
             return;
         }
         
@@ -175,19 +175,17 @@ class MirrorTranslator {
         }, 3000);
     }
     
-    showError(message) {
-        console.error(message);
-        this.chineseText.innerHTML = `<span style="font-size: 16px; opacity: 0.8;">${message}</span>`;
-    }
-    
     initEventListeners() {
         this.chineseMicBtn.addEventListener('click', () => {
             if (this.chineseRecognition) {
                 try {
                     this.chineseRecognition.start();
                 } catch (e) {
-                    console.error(e);
+                    console.error('Start error:', e);
+                    this.updateStatus('chinese', '启动失败');
                 }
+            } else {
+                this.updateStatus('chinese', '浏览器不支持');
             }
         });
         
@@ -196,12 +194,14 @@ class MirrorTranslator {
                 try {
                     this.englishRecognition.start();
                 } catch (e) {
-                    console.error(e);
+                    console.error('Start error:', e);
+                    this.updateStatus('english', 'Start failed');
                 }
+            } else {
+                this.updateStatus('english', 'Not supported');
             }
         });
     }
-    
 }
 
 document.addEventListener('DOMContentLoaded', () => {
