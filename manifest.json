@@ -1,0 +1,16 @@
+{
+    "name": "FaceTranslator",
+    "short_name": "FaceTranslator",
+    "description": "Real-time voice translator for face-to-face conversations",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0f",
+    "theme_color": "#1a1a2e",
+    "icons": [
+        {
+            "src": "logo.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}

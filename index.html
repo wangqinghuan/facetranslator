@@ -4,7 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FaceTranslator - 面对面翻译器</title>
+    <meta name="description" content="Real-time voice translator for face-to-face conversations between Chinese and English speakers. Tap, speak, and see instant translations.">
+    <meta name="keywords" content="translator, voice translator, Chinese, English, translation, speech recognition, face to face, 语言翻译, 语音翻译">
+    <meta name="author" content="FaceTranslator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FaceTranslator - 面对面翻译器">
+    <meta property="og:description" content="Real-time voice translator for face-to-face conversations between Chinese and English speakers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://facetranslator.vercel.app">
+    <meta property="og:image" content="https://facetranslator.vercel.app/logo.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FaceTranslator - 面对面翻译器">
+    <meta name="twitter:description" content="Real-time voice translator for face-to-face conversations.">
+    <link rel="canonical" href="https://facetranslator.vercel.app">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google-site-verification" content="Kd_pHZRg2BjECIm4Wcp2h7z43A_WI1FYMWSwDGhQVrs" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1NQQ948PWB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1NQQ948PWB');
+    </script>
 </head>
 <body>
     <div class="container">
@@ -47,5 +72,10 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
 </body>
 </html>

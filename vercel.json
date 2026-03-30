@@ -1,7 +1,6 @@
 {
-  "framework": null,
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "public": true,
-  "headers": []
+  "name": "facetranslator",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
